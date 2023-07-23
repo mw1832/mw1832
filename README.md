@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @mw1832
 - 👀 I’m interested in contributing to open source projects
 - 🌱 I’m currently learning python
-- 💞️ I’m looking to collaborate with cat owners
+- 💞️ I’m looking to collaborate with cat caretakers
 - 📫 How to reach me mw.wu@protonmail.com
 
 <!---
