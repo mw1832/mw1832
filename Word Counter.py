@@ -1,9 +1,8 @@
 # 
 import os
-# Change the working directory
-os.chdir(r'C:\Users\mwwu\Documents\python')
+#Set the working directory (As written, this program counts the words in subfolders with writing but not the text files in the parent folder)
+os.chdir('insert path to working directory')
 working_directory = os.getcwd()
-
 
 # Create a list with the relevant folders
 def get_immediate_subdirectories(a_dir):
