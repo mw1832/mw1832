@@ -1,5 +1,6 @@
 import os
-# Change the working directory (Intended to be run from a directory which contains folders which contain text files)
+import logging
+# Change the working directory
 os.chdir('insert path to working directory')
 working_directory = os.getcwd()
 
@@ -26,7 +27,7 @@ folder_word_counts=[]
 for folder in folders:
    text_files = [x for x in os.listdir(os.path.join(working_directory, folder)) if x.endswith(".txt")]
    #create a list of file paths
-   file_paths = [os.path.join(working_directory, folder) + "/" + x for x in text_files]
+   file_paths = [os.path.join(working_directory,os.path.join(working_directory, folder), x ) for x in text_files]
    #call the function to count the words in the .txt files in the folder, store results in a list
    folder_word_counts.append(count_words(file_paths))
 
@@ -41,7 +42,7 @@ for x in folder_word_counts:
 result = str(sum)
 
 #append to a .log file the total number of words, and the date/time
-import logging
+
 logging.basicConfig(filename='words_written.log', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(message)s')
 logging.error('You have written ' + result + ' words')
 
