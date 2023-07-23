@@ -1,8 +1,8 @@
-# 
 import os
-#Set the working directory (As written, this program counts the words in subfolders with writing but not the text files in the parent folder)
+# Change the working directory (Intended to be run from a directory which contains folders which contain text files)
 os.chdir('insert path to working directory')
 working_directory = os.getcwd()
+
 
 # Create a list with the relevant folders
 def get_immediate_subdirectories(a_dir):
@@ -22,24 +22,25 @@ def count_words(file_paths):
 
 folder_word_counts=[]
 
-# loop through folders, enter each one to count the words, store results in list folder_word_counts
+# loop through folders, list the .txt files
 for folder in folders:
-   os.chdir(os.path.join(working_directory, folder))
-   #create a list of text files
-   text_files = [x for x in os.listdir() if x.endswith(".txt")]
-   #create a list of file paths to text files
-   file_paths = [os.getcwd() + "/" + x for x in text_files]
+   text_files = [x for x in os.listdir(os.path.join(working_directory, folder)) if x.endswith(".txt")]
+   #create a list of file paths
+   file_paths = [os.path.join(working_directory, folder) + "/" + x for x in text_files]
+   #call the function to count the words in the .txt files in the folder, store results in a list
    folder_word_counts.append(count_words(file_paths))
 
+#How many words did we find in each folder?
 print(folder_word_counts)
 
+#Sum the list of integers
 sum = 0
 for x in folder_word_counts:
    sum += x
+#Store the result as a string
 result = str(sum)
 
-#return to working directory to record logs
-os.chdir(working_directory)
+#append to a .log file the total number of words, and the date/time
 import logging
 logging.basicConfig(filename='words_written.log', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(message)s')
 logging.error('You have written ' + result + ' words')
